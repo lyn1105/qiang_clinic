@@ -1,0 +1,6 @@
+{
+  "name": "Qiangzi Clinic (强子心理诊所)",
+  "description": "A cyber psychological sanctuary designed to provide empathetic, low-cognitive psychological intervention through interactive 'treatment rooms'.",
+  "requestFramePermissions": ["microphone", "geolocation"],
+  "majorCapabilities": []
+}

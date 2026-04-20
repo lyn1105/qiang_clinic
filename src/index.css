@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Noto Serif SC", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Morandi Palette */
+  --color-cyber-bg: #e5e0d8;       /* Warm Stone Background */
+  --color-cyber-card: #f4f1ed;     /* Soft Linen Card */
+  --color-cyber-primary: #828e7d;  /* Muted Sage Green */
+  --color-cyber-secondary: #a58b84; /* Dusty Clay/Rose */
+  --color-cyber-text: #4f4f4f;     /* Warm Charcoal Text */
+  --color-cyber-muted: #afafa7;    /* Sand Muted Text */
+}
+
+@layer base {
+  body {
+    @apply bg-cyber-bg text-cyber-text font-sans transition-colors duration-500;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+}
+
+.glass {
+  @apply bg-white/40 backdrop-blur-sm border border-white/60 shadow-sm;
+}
+
+.neon-border {
+  @apply border border-cyber-primary/20 shadow-[0_4px_20px_rgba(130,142,125,0.1)];
+}
+
+.neon-text-primary {
+  @apply text-cyber-primary;
+}
+
+.neon-text-secondary {
+  @apply text-cyber-secondary;
+}
+
+/* Add a paper-like texture or soft shadows */
+.card-soft {
+  @apply bg-cyber-card rounded-3xl border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)];
+}

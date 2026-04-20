@@ -1,14 +1,17 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
-import {defineConfig, loadEnv} from 'vite';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { defineConfig, loadEnv } from 'vite';
 
-export default defineConfig(({mode}) => {
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
     plugins: [react(), tailwindcss()],
     define: {
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+      'process.env.GEMINI_API_KEY': JSON.stringify(process.env.GEMINI_API_KEY || env.GEMINI_API_KEY),
       'process.env.NODE_ENV': JSON.stringify(mode),
     },
     resolve: {
@@ -16,6 +19,7 @@ export default defineConfig(({mode}) => {
         '@': path.resolve(__dirname, '.'),
         'node-fetch': path.resolve(__dirname, 'src/fetch-alias.js'),
         'cross-fetch': path.resolve(__dirname, 'src/fetch-alias.js'),
+        'formdata-polyfill': path.resolve(__dirname, 'src/formdata-alias.js'),
       },
     },
     server: {

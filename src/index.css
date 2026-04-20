@@ -6,18 +6,19 @@
   --font-serif: "Noto Serif SC", serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  /* Morandi Palette */
-  --color-cyber-bg: #e5e0d8;       /* Warm Stone Background */
-  --color-cyber-card: #f4f1ed;     /* Soft Linen Card */
-  --color-cyber-primary: #828e7d;  /* Muted Sage Green */
-  --color-cyber-secondary: #a58b84; /* Dusty Clay/Rose */
-  --color-cyber-text: #4f4f4f;     /* Warm Charcoal Text */
-  --color-cyber-muted: #afafa7;    /* Sand Muted Text */
+  /* Cyberpunk Palette */
+  --color-cyber-bg: #0b0a1f;       /* Deep Night Blue */
+  --color-cyber-card: #16152d;     /* Purple Navy Card */
+  --color-cyber-primary: #f97316;  /* Neon Orange */
+  --color-cyber-secondary: #a855f7; /* Neon Purple */
+  --color-cyber-accent: #00f2ff;    /* Neon Cyan */
+  --color-cyber-text: #e2e8f0;     /* Slate Silver */
+  --color-cyber-muted: #64748b;    /* Muted Steel */
 }
 
 @layer base {
   body {
-    @apply bg-cyber-bg text-cyber-text font-sans transition-colors duration-500;
+    @apply bg-cyber-bg text-cyber-text font-sans transition-colors duration-500 selection:bg-cyber-primary/30;
   }
   h1, h2, h3, h4 {
     @apply font-serif;
@@ -25,11 +26,15 @@
 }
 
 .glass {
-  @apply bg-white/40 backdrop-blur-sm border border-white/60 shadow-sm;
+  @apply bg-cyber-card/60 backdrop-blur-md border border-white/10 shadow-xl;
 }
 
 .neon-border {
-  @apply border border-cyber-primary/20 shadow-[0_4px_20px_rgba(130,142,125,0.1)];
+  @apply border border-cyber-primary/30 shadow-[0_0_15px_rgba(249,115,22,0.15)];
+}
+
+.neon-border-secondary {
+  @apply border border-cyber-secondary/30 shadow-[0_0_15px_rgba(168,85,247,0.15)];
 }
 
 .neon-text-primary {

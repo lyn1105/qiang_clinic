@@ -25,8 +25,9 @@ export const CyberTriage: React.FC<CyberTriageProps> = ({ onComplete }) => {
       const result = await triageInput(input);
       onComplete(result);
     } catch (err) {
-      console.error(err);
-      setError('强子的服务器开小差了，稍后再试。');
+      console.error('Triage failed:', err);
+      const errorMessage = err instanceof Error ? err.message : String(err);
+      setError(`强子的服务器开小差了 (${errorMessage})`);
     } finally {
       setIsLoading(false);
     }

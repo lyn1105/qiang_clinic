@@ -62,8 +62,8 @@ export const Layout: React.FC<LayoutProps> = ({ children, activeRoom, onNavigate
       </main>
 
       {/* Grid Pattern */}
-      <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.05]" 
-           style={{ backgroundImage: 'radial-gradient(#000 0.5px, transparent 0.5px)', backgroundSize: '60px 60px' }} />
+      <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.1]" 
+           style={{ backgroundImage: 'radial-gradient(var(--color-cyber-primary) 0.5px, transparent 0.5px)', backgroundSize: '60px 60px' }} />
     </div>
   );
 };

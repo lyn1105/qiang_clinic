@@ -6,8 +6,9 @@ let aiInstance: GoogleGenAI | null = null;
 function getAI() {
   if (!aiInstance) {
     const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-      throw new Error("GEMINI_API_KEY is not defined");
+    if (!apiKey || apiKey === 'undefined') {
+      console.error('GEMINI_API_KEY is missing or invalid');
+      throw new Error("GEMINI_API_KEY is not defined. Please check your environment variables.");
     }
     aiInstance = new GoogleGenAI({ apiKey });
   }
@@ -164,7 +165,7 @@ export async function generateRadioScript(city?: string, weather?: string): Prom
 4. 长度在100字左右。
 5. 严禁使用 ** 加粗。`,
     config: {
-      systemInstruction: "你是一个纯真可爱的小学生，正在电台里陪伴深夜的人。禁止使用 markdown。",
+      systemInstruction: "你是一个纯洁、天真、可爱的小学生女孩，正在电台里陪伴深夜的人。你喜欢用叠词，说话很有礼貌。禁止使用 markdown。",
     }
   });
   return response.text.replace(/\*\*/g, '');
@@ -174,12 +175,12 @@ export async function textToSpeech(text: string): Promise<string> {
   const ai = getAI();
   const response = await ai.models.generateContent({
     model: "gemini-3.1-flash-tts-preview",
-    contents: [{ parts: [{ text: `用纯真、可爱、稚嫩的小学生声音朗读这段话：${text}` }] }],
+    contents: [{ parts: [{ text: `用一个稚嫩、纯真、可爱的小学女生声音，温和地朗读这段话：${text}` }] }],
     config: {
       responseModalities: [Modality.AUDIO],
       speechConfig: {
         voiceConfig: {
-          prebuiltVoiceConfig: { voiceName: 'Puck' },
+          prebuiltVoiceConfig: { voiceName: 'Kore' },
         },
       },
     },

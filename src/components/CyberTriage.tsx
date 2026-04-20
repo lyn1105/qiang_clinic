@@ -111,8 +111,8 @@ export const CyberTriage: React.FC<CyberTriageProps> = ({ onComplete }) => {
           </div>
           <p className="text-red-200/70 text-sm leading-relaxed">{error}</p>
           <div className="mt-4 pt-4 border-t border-red-500/10 text-[10px] text-red-400/40 uppercase font-mono tracking-widest flex flex-col gap-1">
-            <span>Client ID: 0.4.5-DEPLOYED</span>
-            <span>Tip: Clear Cache & Hard Refresh if seeing old errors</span>
+            <span>Client ID: 0.5.1-NEW</span>
+            <span>Tip: Try a different browser or Incognito mode if stuck on v4</span>
           </div>
         </motion.div>
       )}

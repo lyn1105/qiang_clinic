@@ -33,7 +33,7 @@ export default function App() {
   return (
     <Layout activeRoom={activeRoom} onNavigate={navigateTo}>
       <div className="fixed bottom-2 right-2 text-[10px] text-cyan-500/30 font-mono pointer-events-none selection:bg-transparent">
-        VER: 0.4.1-HOTFIX
+        VER: 0.5.1-NEW
       </div>
       {activeRoom === 'triage' && !triageResult && (
         <CyberTriage onComplete={handleTriageComplete} />

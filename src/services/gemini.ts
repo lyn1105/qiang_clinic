@@ -13,7 +13,14 @@ function getAI() {
     // after the system secret is linked.
     if (!apiKey || apiKey === 'undefined' || apiKey === 'MY_GEMINI_API_KEY' || apiKey === "") {
       console.error('CRITICAL: GEMINI_API_KEY not found');
-      throw new Error("【版本v4】系统依然没检测到密钥。原因：由于你之前手动添加过 Secret，浏览器缓存了旧的出错页面。请务必：1. 删除左侧手动添加的 GEMINI_API_KEY（只保留系统内置项）；2. 按 Ctrl+F5 彻底强制刷新浏览器。");
+      // Detect if we might be on Vercel (simple heuristic)
+      const isExternal = typeof window !== 'undefined' && !window.location.hostname.includes('run.app');
+      
+      let errorMsg = isExternal 
+        ? "【部署识别】检测到你可能正在 Vercel/GitHub 运行。请在 Vercel 项目控制台的 Settings -> Environment Variables 中添加名为 VITE_GEMINI_API_KEY 的变量。"
+        : "【版本v5】系统未检测到内置密钥。请：1. 删除左侧手动添加的同名 Secret；2. 按 Ctrl+F5 强制刷新页面。";
+        
+      throw new Error(errorMsg);
     }
     aiInstance = new GoogleGenAI({ apiKey });
   }

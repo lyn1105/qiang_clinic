@@ -5,10 +5,15 @@ let aiInstance: GoogleGenAI | null = null;
 
 function getAI() {
   if (!aiInstance) {
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey || apiKey === 'undefined') {
-      console.error('GEMINI_API_KEY is missing or invalid');
-      throw new Error("GEMINI_API_KEY is not defined. Please check your environment variables.");
+    // In AI Studio, GEMINI_API_KEY is a reserved name and automatically injected.
+    // We check both process.env and import.meta.env to be safe.
+    const apiKey = process.env.GEMINI_API_KEY || (import.meta as any).env.VITE_GEMINI_API_KEY;
+    
+    // If it's still missing, it's usually because the page needs a refresh 
+    // after the system secret is linked.
+    if (!apiKey || apiKey === 'undefined' || apiKey === 'MY_GEMINI_API_KEY') {
+      console.error('GEMINI_API_KEY not found');
+      throw new Error("诊断系统未检测到系统密钥。由于 GEMINI_API_KEY 是系统内置保留位，请删除你手动添加的同名 Secret，然后【刷新页面】即可直接使用。");
     }
     aiInstance = new GoogleGenAI({ apiKey });
   }

@@ -11,9 +11,9 @@ function getAI() {
     
     // If it's still missing, it's usually because the page needs a refresh 
     // after the system secret is linked.
-    if (!apiKey || apiKey === 'undefined' || apiKey === 'MY_GEMINI_API_KEY') {
-      console.error('GEMINI_API_KEY not found');
-      throw new Error("诊断系统未检测到系统密钥。由于 GEMINI_API_KEY 是系统内置保留位，请删除你手动添加的同名 Secret，然后【刷新页面】即可直接使用。");
+    if (!apiKey || apiKey === 'undefined' || apiKey === 'MY_GEMINI_API_KEY' || apiKey === "") {
+      console.error('CRITICAL: GEMINI_API_KEY not found');
+      throw new Error("【版本v4】系统依然没检测到密钥。原因：由于你之前手动添加过 Secret，浏览器缓存了旧的出错页面。请务必：1. 删除左侧手动添加的 GEMINI_API_KEY（只保留系统内置项）；2. 按 Ctrl+F5 彻底强制刷新浏览器。");
     }
     aiInstance = new GoogleGenAI({ apiKey });
   }

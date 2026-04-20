@@ -27,7 +27,7 @@ export const CyberTriage: React.FC<CyberTriageProps> = ({ onComplete }) => {
     } catch (err) {
       console.error('Triage failed:', err);
       const errorMessage = err instanceof Error ? err.message : String(err);
-      setError(`强子的服务器开小差了 (${errorMessage})`);
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -103,10 +103,17 @@ export const CyberTriage: React.FC<CyberTriageProps> = ({ onComplete }) => {
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-2 text-red-400 text-sm glass border-red-500/20 px-4 py-2 rounded-lg"
+          className="flex flex-col gap-2 p-6 glass border-red-400/30 rounded-2xl max-w-xl text-center items-center shadow-2xl shadow-red-900/20"
         >
-          <AlertCircle size={16} />
-          {error}
+          <div className="flex items-center gap-2 text-red-400 font-bold text-lg mb-1">
+            <AlertCircle size={20} />
+            <span>强子的服务器开小差了</span>
+          </div>
+          <p className="text-red-200/70 text-sm leading-relaxed">{error}</p>
+          <div className="mt-4 pt-4 border-t border-red-500/10 text-[10px] text-red-400/40 uppercase font-mono tracking-widest flex flex-col gap-1">
+            <span>Client ID: 0.4.5-DEPLOYED</span>
+            <span>Tip: Clear Cache & Hard Refresh if seeing old errors</span>
+          </div>
         </motion.div>
       )}
 
